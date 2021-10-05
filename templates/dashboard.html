@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div id="landing">
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="bold">Dashboard</h1>
+            <br>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h2>New Scan</h2>
+                    <br>
+                    <h3>Upload x-ray to classify</h3>
+                    <h5>Images uplaoded must be of <strong>.jpg or jpeg</strong> format</h5>
+                    <br>
+                    <h5>Click here to downlaod demo files <a href="{{url_for('demo')}}">downlaod</a></h5>
+                    <form action="{{url_for('task')}}" method="POST" enctype="multipart/form-data">
+                        <input id="browse" type="file" name="file" accept="image/jpeg" />
+                        <br>
+                        <br>
+                        <button class="btn btn-dark" type="submit">Analyze</button>
+                        <br>
+                    </form>
+                    <br>
+                </div>
+                <div class="col-12 col-md-6">
+                    <h2>Report</h2>
+                    <br>
+                    <h3>A genral summary of all the scans</h3>
+                    <h5>A pdf version of report also available</h5>
+                    <br>
+                    <h5>Click here to <a href="{{url_for('report')}}"> view report</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

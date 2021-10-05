@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div id="landing">
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="bold">Overall patient report</h1>
+            <br>
+            <h3>First Name : {{session.data[2]}}</h3>
+            <br>
+            <h3>Last Name : {{session.data[3]}}</h3>
+            <br>
+            <h3>Email : {{session.data[1]}}</h3>
+            <br>
+            <h3>Gender : {{session.data[6].capitalize()}}</h3>
+            <br>
+            <h3>Patient Id : {{session.data[0]}}</h3>
+            <br>
+            <h3>Scans : {{scans}}</h3>
+            <br>
+            <div class="table-responsive">
+
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark ">
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Filename</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Result</th>
+                            <th scope="col">Probablity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in tasks %}
+                        <tr class="table-primary ">
+                            <td><img height="auto" width="64px" src="{{url_for('static',filename='maps/'+task[2])}}"
+                                    alt=""></td>
+                            <td>{{task[2]}}</td>
+                            <td>{{task[6]}}</td>
+                            <td>{{task[3]}}</td>
+                            <td>{{task[7][:4]}} %</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+{% endblock %}

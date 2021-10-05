@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="landing">
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="bold">Results</h1>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <h3 class="bold">Uploaded Image with Heatmap</h3>
+                    <br>
+                    <img width="100%" src="{{url_for('static', filename = img_path)}}" alt="">
+                    <br><br>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <div class="container">
+                        <div class=" chart-container" id="chart">
+                            <h3 class="bold">Diagnosis : {{result}}</h3>
+                            <br>
+                            <canvas id="myChart" width="350" height="350"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Normal', 'Pneumonia'],
+            datasets: [{
+                label: 'Category',
+                data: [{% for item in preds %}
+                    {{ item }},
+                  {% endfor %}],
+    backgroundColor: [
+        'rgba(102,187,106 ,1)',
+        'rgba(230,74,25 ,1)'
+    ],
+        borderColor: [
+            'rgba(255, 255, 255, 1)',
+            'rgba(255, 255, 255, 1)'
+        ],
+            borderWidth: 4
+            }]
+        },
+    options: {
+        responsive: true,
+            scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+    });
+</script>
+
+{% endblock %}

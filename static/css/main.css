@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.alert {
+  margin-bottom: 0px;
+}
+
+.nav-link {
+  margin-left: 1.2rem;
+  margin-right: 1.2rem;
+}
+
+#landing {
+  background-image: url("/static/img/landing.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
